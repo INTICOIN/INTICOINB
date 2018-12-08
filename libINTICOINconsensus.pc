@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: INTICOIN Core consensus library
+Description: Library for the INTICOIN consensus protocol.
+Version: 4.4.0
+Libs: -L${libdir} -lINTICOINconsensus
+Cflags: -I${includedir}
+Requires.private: libcrypto

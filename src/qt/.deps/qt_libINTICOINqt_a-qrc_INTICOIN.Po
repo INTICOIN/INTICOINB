@@ -1,0 +1,4 @@
+qt/qt_libINTICOINqt_a-qrc_INTICOIN.o: qt/qrc_INTICOIN.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

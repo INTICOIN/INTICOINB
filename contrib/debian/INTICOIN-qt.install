@@ -1,0 +1,6 @@
+usr/local/bin/INTICOIN-qt usr/bin
+share/pixmaps/INTICOIN32.xpm usr/share/pixmaps
+share/pixmaps/INTICOIN16.xpm usr/share/pixmaps
+share/pixmaps/INTICOIN128.png usr/share/pixmaps
+debian/INTICOIN-qt.desktop usr/share/applications
+debian/INTICOIN-qt.protocol usr/share/kde4/services/

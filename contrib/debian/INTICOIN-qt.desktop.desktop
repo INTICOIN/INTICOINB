@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=INTICOIN
+Comment=INTICOIN P2P Cryptocurrency
+Exec=INTICOIN-qt %u
+Terminal=false
+Type=Application
+Icon=INTICOIN128
+MimeType=x-scheme-handler/INTICOIN;
+Categories=Office;Finance;
+Name[es_PE]=INTICOIN-qt.desktop

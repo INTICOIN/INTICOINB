@@ -1,0 +1,4 @@
+libINTICOINconsensus_la-hamsi_helper.lo: hamsi_helper.c \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

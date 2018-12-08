@@ -1,0 +1,81 @@
+policy_module(INTICOIN, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type INTICOIN_t;
+type INTICOIN_exec_t;
+init_daemon_domain(INTICOIN_t, INTICOIN_exec_t)
+
+permissive INTICOIN_t;
+
+type INTICOIN_initrc_exec_t;
+init_script_file(INTICOIN_initrc_exec_t)
+
+type INTICOIN_conf_t;
+files_type(INTICOIN_conf_t)
+
+type INTICOIN_var_lib_t;
+files_type(INTICOIN_var_lib_t)
+
+type INTICOIN_var_run_t;
+files_type(INTICOIN_var_run_t)
+
+type INTICOIN_port_t;
+corenet_port(INTICOIN_port_t)
+
+########################################
+#
+# INTICOIN local policy
+#
+allow INTICOIN_t self:process { fork };
+
+allow INTICOIN_t self:fifo_file rw_fifo_file_perms;
+allow INTICOIN_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(INTICOIN_t, INTICOIN_conf_t, INTICOIN_conf_t)
+manage_files_pattern(INTICOIN_t, INTICOIN_conf_t, INTICOIN_conf_t)
+
+manage_dirs_pattern(INTICOIN_t, INTICOIN_var_lib_t, INTICOIN_var_lib_t)
+manage_files_pattern(INTICOIN_t, INTICOIN_var_lib_t, INTICOIN_var_lib_t)
+files_var_lib_filetrans(INTICOIN_t, INTICOIN_var_lib_t, { dir file })
+
+manage_dirs_pattern(INTICOIN_t, INTICOIN_var_run_t, INTICOIN_var_run_t)
+manage_files_pattern(INTICOIN_t, INTICOIN_var_run_t, INTICOIN_var_run_t)
+
+sysnet_dns_name_resolve(INTICOIN_t)
+corenet_all_recvfrom_unlabeled(INTICOIN_t)
+
+allow INTICOIN_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(INTICOIN_t)
+corenet_tcp_sendrecv_generic_node(INTICOIN_t)
+corenet_tcp_sendrecv_all_ports(INTICOIN_t)
+corenet_tcp_bind_generic_node(INTICOIN_t)
+
+gen_require(`
+    type INTICOIN_port_t;
+')
+allow INTICOIN_t INTICOIN_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type INTICOIN_port_t;
+')
+allow INTICOIN_t INTICOIN_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(INTICOIN_t)
+
+files_read_etc_files(INTICOIN_t)
+
+miscfiles_read_localization(INTICOIN_t)
+
+sysnet_dns_name_resolve(INTICOIN_t)
+
+allow INTICOIN_t INTICOIN_exec_t:file execute_no_trans;
+allow INTICOIN_t self:process setsched;
+corecmd_exec_ls(INTICOIN_t)
+corenet_tcp_connect_http_port(INTICOIN_t)
+dev_read_urand(INTICOIN_t)
+fs_getattr_xattr_fs(INTICOIN_t)
+kernel_read_system_state(INTICOIN_t)
